@@ -14,9 +14,6 @@ jobs:
 
       - name: Installing dependencies
         run: yarn install
-
-      - name: Running Test
-        run: yarn test
   deploy:
     name: Deploying
     needs: [test]
