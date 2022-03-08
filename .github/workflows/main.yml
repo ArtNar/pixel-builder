@@ -6,6 +6,17 @@ on:
   pull_request:
     branches: [main]
 jobs:
+  test:
+    name: Tests
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Installing dependencies
+        run: yarn install
+
+      - name: Running Test
+        run: yarn test
   deploy:
     name: Deploying
     needs: [test]
