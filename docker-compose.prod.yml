@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+  nginx:
+    container_name: core_web
+    restart: on-failure
+    image: jonasal/nginx-certbot:latest
+    env_file:
+      - .env.nginx
+    volumes:
+      - nginx_secrets:/etc/letsencrypt
+      - ./nginx/user_conf.d:/etc/nginx/user_conf.d
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - frontend
+      - backend
+  frontend:
+    container_name: frontend
+    restart: on-failure
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    ports:
+      - "5000:5000"
+    command: >
+      sh -c "yarn build && serve -s build"
+  backend:
+    container_name: backend
+    restart: on-failure
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "9001:9001"
+    command: >
+      sh -c "yarn dev"
+    env_file:
+      - ./backend/.env
+volumes:
+  nginx_secrets:
