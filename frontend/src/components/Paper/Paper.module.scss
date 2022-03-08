@@ -1,0 +1,8 @@
+@import '../../styles/variables.scss';
+
+.paper {
+  background: linear-gradient(112deg, rgba($base-white, 0.5) 3.5%, rgba($base-white, 0) 112%);
+  filter: drop-shadow(14px 17px 29px rgba($base-black, 0.05));
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+}

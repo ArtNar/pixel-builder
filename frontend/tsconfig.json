@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": [
+      "es6",
+      "es2015",
+      "dom",
+      "es2015.promise"
+    ],
+    "jsx": "react",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "outDir": "lib",
+    "sourceMap": true,
+    "declaration": true,
+  },
+  "include": [
+    "declarations.d.ts",
+    "./src/**/*",
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

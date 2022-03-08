@@ -1,0 +1,21 @@
+@import '../../styles/variables.scss';
+
+.app {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  background: linear-gradient(240deg, #667eea 0%, #764ba2 101%);
+}
+
+.fallbackMsg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: $base-white;
+  font-size: 18px;
+  margin: 0 30%;
+  text-align: center;
+}

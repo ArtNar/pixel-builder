@@ -1,0 +1,12 @@
+.build/
+.idea/
+.publish/
+.vscode/
+.env
+
+build/
+dist/
+dist-docs/
+node_modules/
+npm-debug.log
+yarn-error.log

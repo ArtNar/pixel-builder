@@ -1,0 +1,13 @@
+@import '../../styles/variables.scss';
+
+.button {
+  border: none;
+  background-color: transparent;
+  background: linear-gradient(111deg, rgba($base-white, 0.5) -1.8%, rgba($base-white, 0) 110%);
+  box-shadow: 50px 60px 100px rgba($base-black, 0.05);
+  border-radius: 10px;
+  padding: 8px 14px;
+  color: $base-white;
+  min-width: 80px;
+  min-height: 40px;
+}

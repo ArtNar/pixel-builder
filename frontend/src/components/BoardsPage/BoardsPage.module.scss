@@ -1,0 +1,40 @@
+@import '../../styles/variables.scss';
+
+.root {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 36px;
+}
+
+.container {
+  position: relative;
+  padding: 24px;
+  height: 100%;
+  width: 100%;
+  color: $base-white;
+}
+
+.loader {
+  position: absolute;
+  left: 40px;
+  top: 40px;
+}
+
+.boardsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  color: $base-white;
+
+  :global {
+    .ant-list-item-meta-title {
+      color: $base-white;
+    }
+  }
+}

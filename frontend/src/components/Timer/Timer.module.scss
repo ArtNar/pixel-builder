@@ -1,0 +1,50 @@
+@import '../../styles/variables.scss';
+
+.timer {
+  display: flex;
+  color: $base-white;
+  padding-bottom: 20px;
+}
+
+.timerItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  font-weight: 700;
+  position: relative;
+  padding: 0 16px;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.description {
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  transform: translate(-50%, 100%);
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.small {
+  .timerItem {
+    font-size: 24px;
+    padding: 0 12px;
+  }
+
+  .dots {
+    font-size: 24px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+}

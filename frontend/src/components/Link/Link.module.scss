@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+
+.link {
+  cursor: pointer;
+  color: $base-white;
+}
+
+.disabled {
+  cursor: default;
+}

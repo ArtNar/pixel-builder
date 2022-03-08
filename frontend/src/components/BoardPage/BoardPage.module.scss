@@ -1,0 +1,84 @@
+@import '../../styles/variables.scss';
+
+.root {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.sideMenu {
+  height: calc(100% - 40px * 2);
+  position: absolute;
+  top: 50%;
+  right: 40px;
+  transform: translateY(-50%);
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+.loader {
+  position: absolute;
+  left: 40px;
+  top: 40px;
+}
+
+.colorPicker {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  :global(.react-colorful) {
+    height: 150px;
+  }
+}
+
+.colorExample {
+  height: 50px;
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.colorTitle {
+  color: $base-white;
+  margin-bottom: 4px;
+  font-size: 18px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.userData,
+.usersData {
+  margin-top: 24px;
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  color: $base-white;
+  font-size: 18px;
+}
+
+.userDataItem,
+.usersDataItem {
+  &:not(:first-child) {
+    margin-top: 4px;
+  }
+}
+
+.userDataTitle,
+.usersDataTitle {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.colorInput {
+  margin-top: 8px;
+}
