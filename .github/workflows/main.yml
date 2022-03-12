@@ -28,4 +28,5 @@ jobs:
           #passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             cd ~/.scripts
-            sudo ./docker-deploy.sh
+            chmod u+r+x docker-deploy.sh
+            ./docker-deploy.sh
