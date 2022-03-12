@@ -23,7 +23,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.prod
     ports:
-      - "5000:5000"
+      - "5050:5050"
     command: >
       sh -c "yarn build && serve -s build"
   backend:
