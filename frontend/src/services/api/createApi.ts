@@ -1,4 +1,4 @@
-const URI = 'ws://127.0.0.1:9001/ws';
+const URI = 'ws://44.200.251.143:9001/ws';
 
 let cacheInstance = null;
 
