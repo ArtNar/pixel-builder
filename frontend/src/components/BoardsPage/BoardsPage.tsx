@@ -3,11 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Statistic from 'antd/lib/statistic/Statistic';
 import List from 'antd/lib/list';
 import Skeleton from 'antd/lib/skeleton/Skeleton';
-
 import ApiContext from '../../services/api/ApiContext';
 import { Paper } from '../Paper';
 import { Button } from '../Button';
-import { Timer, TIMER_VARIANTS } from '../Timer';
 import { Loader } from '../Loader';
 import { useModal } from '../Modal';
 import styles from './BoardsPage.module.scss';
