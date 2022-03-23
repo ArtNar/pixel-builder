@@ -1,4 +1,4 @@
-const URI = 'ws://44.200.251.143:9001/ws';
+const URI = process.env.API_URI || 'ws://localhost:9001/ws';
 
 let cacheInstance = null;
 
@@ -12,4 +12,10 @@ const createWebsocket = () => {
   return cacheInstance;
 };
 
-export default () => cacheInstance || createWebsocket();
+export default () => {
+  if (cacheInstance && cacheInstance.readyState) {
+    return cacheInstance;
+  }
+
+  return createWebsocket();
+};

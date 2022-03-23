@@ -1,4 +1,5 @@
 const { merge } = require('webpack-merge');
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path');
@@ -72,6 +73,9 @@ const commonConfig = {
       filename: '[name].[hash].css',
       chunkFilename: '[name].[hash].css',
     }),
+    new webpack.DefinePlugin({
+      'process.env.API_URI': JSON.stringify(process.env.API_URI),
+    })
   ],
 };
 

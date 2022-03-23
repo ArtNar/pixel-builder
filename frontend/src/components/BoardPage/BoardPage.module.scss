@@ -8,6 +8,23 @@
 }
 
 .sideMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  flex: 1;
+}
+
+.backButton {
+  margin-bottom: 24px;
+}
+
+.saveButton {
+  margin-top: 24px;
+}
+
+.sideMenuWrapper {
   height: calc(100% - 40px * 2);
   position: absolute;
   top: 50%;
@@ -16,9 +33,6 @@
   width: 250px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 24px;
 }
 
 .loader {
@@ -81,4 +95,9 @@
 
 .colorInput {
   margin-top: 8px;
+}
+
+.deadline > div {
+  color: $base-white;
+  font-size: 24px;
 }

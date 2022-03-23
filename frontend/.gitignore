@@ -2,6 +2,7 @@
 .idea/
 .publish/
 .vscode/
+.env
 
 build/
 dist/

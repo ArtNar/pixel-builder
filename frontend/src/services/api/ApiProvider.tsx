@@ -7,7 +7,7 @@ import { Loader } from '../../components/Loader';
 import { MessageTypes } from './constants';
 import { UserType, PointType, BoardType } from './types';
 
-const DEFAULT_REQUEST_TIMEOUT = 5000;
+const DEFAULT_REQUEST_TIMEOUT = 15000;
 
 const ERROR_MSG_UNAVAILABLE_SERVER = 'Looks like we lost connection to the server, please reload the page';
 const ERROR_MSG_TIMEOUT = 'Looks like the server is taking to long to respond, please try again in sometime';
@@ -16,11 +16,19 @@ interface ApiProviderProps {
   children: any;
 }
 
-const ws = createApi();
+let ws = createApi();
 
 const ApiProvider = ({ children }: ApiProviderProps) => {
   const [apiReady, setApiReady] = React.useState(false);
   const [, setRequests] = React.useState([]);
+
+  const handleConnectionLost = React.useCallback(() => {
+    try {
+      ws = createApi();
+    } catch (error) {
+      return Promise.reject(new Error(ERROR_MSG_UNAVAILABLE_SERVER));
+    }
+  }, []);
 
   const addRequestToLog = (request: { id: string; resolver: (p: any) => any }) => {
     setRequests((prev) => [...prev, request]);
@@ -51,7 +59,7 @@ const ApiProvider = ({ children }: ApiProviderProps) => {
   const handleRegisterUser = React.useCallback(
     (userData: UserType) => {
       if (!ws || ws.readyState !== WebSocket.OPEN) {
-        return Promise.reject(new Error(ERROR_MSG_UNAVAILABLE_SERVER));
+        return handleConnectionLost();
       }
 
       return sendMessage<UserType>(MessageTypes.USER_REGISTER, userData);
@@ -62,7 +70,7 @@ const ApiProvider = ({ children }: ApiProviderProps) => {
   const handleLoginUser = React.useCallback(
     (userData: UserType) => {
       if (!ws || ws.readyState !== WebSocket.OPEN) {
-        return Promise.reject(new Error(ERROR_MSG_UNAVAILABLE_SERVER));
+        return handleConnectionLost();
       }
 
       return sendMessage<UserType>(MessageTypes.USER_LOGIN, userData);
@@ -72,7 +80,7 @@ const ApiProvider = ({ children }: ApiProviderProps) => {
 
   const handleGetUsers = React.useCallback(() => {
     if (!ws || ws.readyState !== WebSocket.OPEN) {
-      return Promise.reject(new Error(ERROR_MSG_UNAVAILABLE_SERVER));
+      return handleConnectionLost();
     }
 
     return sendMessage<UserType[]>(MessageTypes.GET_USERS);
@@ -81,7 +89,7 @@ const ApiProvider = ({ children }: ApiProviderProps) => {
   const handleGetUser = React.useCallback(
     (userId: string) => {
       if (!ws || ws.readyState !== WebSocket.OPEN) {
-        return Promise.reject(new Error(ERROR_MSG_UNAVAILABLE_SERVER));
+        return handleConnectionLost();
       }
 
       return sendMessage<UserType>(MessageTypes.GET_USER, { userId });
@@ -91,7 +99,7 @@ const ApiProvider = ({ children }: ApiProviderProps) => {
 
   const handleGetCurrentUser = React.useCallback(() => {
     if (!ws || ws.readyState !== WebSocket.OPEN) {
-      return Promise.reject(new Error(ERROR_MSG_UNAVAILABLE_SERVER));
+      return handleConnectionLost();
     }
 
     return sendMessage<UserType>(MessageTypes.GET_CURRENT_USER);
@@ -100,7 +108,7 @@ const ApiProvider = ({ children }: ApiProviderProps) => {
   const handleGetUsersQuantity = React.useCallback(
     (boardId: BoardType['id']) => {
       if (!ws || ws.readyState !== WebSocket.OPEN) {
-        return Promise.reject(new Error(ERROR_MSG_UNAVAILABLE_SERVER));
+        return handleConnectionLost();
       }
 
       return sendMessage<number>(MessageTypes.GET_BOARD_USERS_QUANTITY, { boardId });
@@ -111,7 +119,7 @@ const ApiProvider = ({ children }: ApiProviderProps) => {
   const handleCreateBoard = React.useCallback(
     (data: Pick<BoardType, 'name' | 'size' | 'closedAt' | 'isPublic'>) => {
       if (!ws || ws.readyState !== WebSocket.OPEN) {
-        return Promise.reject(new Error(ERROR_MSG_UNAVAILABLE_SERVER));
+        return handleConnectionLost();
       }
 
       return sendMessage<BoardType>(MessageTypes.CREATE_BOARD, data);
@@ -122,7 +130,7 @@ const ApiProvider = ({ children }: ApiProviderProps) => {
   const handleGetBoard = React.useCallback(
     (boardId: BoardType['id']) => {
       if (!ws || ws.readyState !== WebSocket.OPEN) {
-        return Promise.reject(new Error(ERROR_MSG_UNAVAILABLE_SERVER));
+        return handleConnectionLost();
       }
 
       return sendMessage<BoardType>(MessageTypes.GET_BOARD, { boardId });
@@ -132,7 +140,7 @@ const ApiProvider = ({ children }: ApiProviderProps) => {
 
   const handleGetBoards = React.useCallback(() => {
     if (!ws || ws.readyState !== WebSocket.OPEN) {
-      return Promise.reject(new Error(ERROR_MSG_UNAVAILABLE_SERVER));
+      return handleConnectionLost();
     }
 
     return sendMessage<BoardType[]>(MessageTypes.GET_BOARDS);
@@ -141,7 +149,7 @@ const ApiProvider = ({ children }: ApiProviderProps) => {
   const handleEnterBoard = React.useCallback(
     (boardId: BoardType['id']) => {
       if (!ws || ws.readyState !== WebSocket.OPEN) {
-        return Promise.reject(new Error(ERROR_MSG_UNAVAILABLE_SERVER));
+        return handleConnectionLost();
       }
 
       return sendMessage<number>(MessageTypes.USER_ENTER_BOARD, { boardId });
@@ -152,7 +160,7 @@ const ApiProvider = ({ children }: ApiProviderProps) => {
   const handleLeaveBoard = React.useCallback(
     (boardId: BoardType['id']) => {
       if (!ws || ws.readyState !== WebSocket.OPEN) {
-        return Promise.reject(new Error(ERROR_MSG_UNAVAILABLE_SERVER));
+        return handleConnectionLost();
       }
 
       return sendMessage<number>(MessageTypes.USER_LEAVE_BOARD, { boardId });
@@ -163,7 +171,7 @@ const ApiProvider = ({ children }: ApiProviderProps) => {
   const handleDrawPoint = React.useCallback(
     (boardId: BoardType['id'], point: PointType) => {
       if (!ws || ws.readyState !== WebSocket.OPEN) {
-        return Promise.reject(new Error(ERROR_MSG_UNAVAILABLE_SERVER));
+        return handleConnectionLost();
       }
 
       return sendMessage<PointType>(MessageTypes.POINT_DRAW, { boardId, point });

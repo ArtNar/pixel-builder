@@ -18,6 +18,26 @@
   color: $base-white;
 }
 
+.wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.public {
+  color: $base-white;
+  margin-right: 48px;
+  font-size: 16px;
+}
+
+.deadline > div {
+  color: $base-white;
+  font-size: 16px;
+}
+
+.createBoardButton {
+  margin-bottom: 24px;
+}
+
 .loader {
   position: absolute;
   left: 40px;

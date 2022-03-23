@@ -26,6 +26,8 @@ services:
       - "5050:5050"
     command: >
       sh -c "yarn build && serve -s build"
+    env_file:
+      - ./frontend/.env
   backend:
     container_name: backend
     restart: on-failure

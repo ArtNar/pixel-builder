@@ -20,8 +20,12 @@ services:
       dockerfile: Dockerfile.dev
     ports:
       - "8080:8080"
+    volumes:
+      - ./frontend:/app
     command: >
       sh -c "yarn dev"
+    env_file:
+      - ./frontend/.env
   backend:
     container_name: backend
     restart: on-failure

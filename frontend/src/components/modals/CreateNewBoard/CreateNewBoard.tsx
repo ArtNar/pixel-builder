@@ -63,7 +63,13 @@ const CreateNewBoard = ({ closeModal }) => {
             rules={[{ required: true, message: 'Please input your closedAt!' }]}
             showTime={{ defaultValue: moment('00:00:00', 'HH:mm:ss') }}
           />
-          <FormCheckbox label="Is public" name="isPublic" rules={[{ required: false }]} valuePropName="checked" />
+          <FormCheckbox
+            className={styles.checkbox}
+            label="Is public"
+            name="isPublic"
+            rules={[{ required: false }]}
+            valuePropName="checked"
+          />
           <div className={styles.actions}>
             <Button className={styles.button} onClick={closeModal}>
               cancel
