@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path');
 const devConfig = require('./webpack.config.dev');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const commonConfig = {
   target: "web",
@@ -75,10 +76,11 @@ const commonConfig = {
     }),
     new webpack.DefinePlugin({
       'process.env.API_URI': JSON.stringify(process.env.API_URI),
-    })
+    }),
+    // new BundleAnalyzerPlugin()
   ],
 };
 
 module.exports = (env, { mode = 'production' }) => {
-  return merge(commonConfig, mode === 'production' ? prodConfig : devConfig, { mode });
+  return merge(commonConfig, mode === 'production' ? {} : devConfig, { mode });
 }

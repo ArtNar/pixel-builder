@@ -3,7 +3,9 @@
 .publish/
 .vscode/
 .env
+stats.json
 
+lib/
 build/
 dist/
 dist-docs/

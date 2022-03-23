@@ -1,6 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { List, Skeleton, Statistic } from 'antd';
+import Statistic from 'antd/lib/statistic/Statistic';
+import List from 'antd/lib/list';
+import Skeleton from 'antd/lib/skeleton/Skeleton';
+
 import ApiContext from '../../services/api/ApiContext';
 import { Paper } from '../Paper';
 import { Button } from '../Button';

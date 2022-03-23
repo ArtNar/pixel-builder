@@ -23,9 +23,9 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.prod
     ports:
-      - "5050:5050"
+      - "3000:3000"
     command: >
-      sh -c "yarn build && serve -s build"
+      sh -c "yarn build && serve -s dist"
     env_file:
       - ./frontend/.env
   backend:
